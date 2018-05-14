@@ -8,10 +8,10 @@ Implementation of Prototypical Networks for Few Shot Learning (https://arxiv.org
 ### Datasets
 
 #### Omniglot
-Splits same as [here](https://github.com/jakesnell/prototypical-networks).
+Splits same as [here](https://github.com/jakesnell/prototypical-networks). Put the data under omniglot/data.
 
 #### Cupid
-Cupid is my private dataset. Put the data under omniglot/data.
+Cupid is my private dataset.
 
 ### Refrence Code
 - [Prototypical-Networks-for-Few-shot-Learning-PyTorch](https://github.com/orobix/Prototypical-Networks-for-Few-shot-Learning-PyTorch)
