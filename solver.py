@@ -2,6 +2,8 @@ import torch
 from torch.autograd import Variable
 import numpy as np
 from models.protonet import ProtoNet
+from models.protonet_resnet import ProtoNet as ProtoNet_resnet
+from tqdm import tqdm
 
 import os
 
@@ -37,7 +39,9 @@ class Solver(object):
         return Variable(x, volatile=volatile)
 
     def build_model(self):
-        self.protonet = ProtoNet(x_dim=3, hid_dim=64, out_dim=64)
+        # self.protonet = ProtoNet(x_dim=3, hid_dim=64, out_dim=64)
+        self.protonet = ProtoNet_resnet(layers=[3, 4, 6, 3])
+        print(self.protonet)
 
         # Optimizer
         self.optimizer = torch.optim.Adam(self.protonet.parameters(), self.config.lr)
@@ -68,7 +72,7 @@ class Solver(object):
         start_time = time.time()
         for e in range(self.config.num_epochs):
             print('=== Epoch: {} ==='.format(e))
-            for i, (images, labels) in enumerate(self.train_data_loader):
+            for i, (images, labels) in tqdm(enumerate(self.train_data_loader)):
                 self.optimizer.zero_grad()
                 images = self.to_var(images)
                 labels = self.to_var(labels)
@@ -127,10 +131,12 @@ class Solver(object):
         torch.save(self.protonet.state_dict(), last_model_path)
 
     def test(self):
+        print('Loading Model......')
         best_model_path = os.path.join(self.config.model_save_dir, 'best_model.pth')
         self.protonet.load_state_dict(torch.load(best_model_path))
         avg_acc = list()
-        for e in range(self.config.num_test_episodes):
+        for e in range(5):
+            print('== Epoch:{} =='.format(e))
             for images, labels in self.test_data_loader:
                 images = self.to_var(images)
                 labels = self.to_var(labels)

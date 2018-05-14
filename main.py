@@ -77,17 +77,17 @@ if __name__ == '__main__':
     parser.add_argument('--num_train_episodes', type=int, default=500)
     parser.add_argument('--num_train_way', type=int, default=3)
     parser.add_argument('--num_train_support', type=int, default=5)
-    parser.add_argument('--num_train_query', type=int, default=5)
-    parser.add_argument('--num_test_episodes', type=int, default=100)
+    parser.add_argument('--num_train_query', type=int, default=15)
+    parser.add_argument('--num_test_episodes', type=int, default=500)
     parser.add_argument('--num_test_way', type=int, default=3)
     parser.add_argument('--num_test_support', type=int, default=5)
-    parser.add_argument('--num_test_query', type=int, default=5)
+    parser.add_argument('--num_test_query', type=int, default=15)
 
     # Training settings
-    parser.add_argument('--num_epochs', type=int, default=1000)
+    parser.add_argument('--num_epochs', type=int, default=200)
     parser.add_argument('--lr', type=float, default=0.001)
     parser.add_argument('--lr_scheduler_gamma', type=float, default=0.5)
-    parser.add_argument('--lr_scheduler_step', type=int, default=60)
+    parser.add_argument('--lr_scheduler_step', type=int, default=20)
     parser.add_argument('--pretrained_model', type=str, default=None)
 
     # path
